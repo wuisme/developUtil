@@ -12,18 +12,20 @@ var name = "devutil"
 var (
 	help       bool
 	optainType string
+	method     string
 )
 
 func init() {
 	flag.BoolVar(&help, "h", false, "this help")
-	flag.StringVar(&optainType, "o", "", ops.OpsUsage())
+	flag.StringVar(&optainType, "t", "", ops.OpsUsage())
+	flag.StringVar(&method, "m", "", "获取详细内容请")
 	// 改变默认的 Usage
 	flag.Usage = usage
 }
 
 func usage() {
 	fmt.Fprintf(os.Stderr, name+` version: `+version+`
-Usage: devutil [-o 操作类型] [-s signal] [-c filename] [-p prefix] [-g directives]
+Usage: devutil [-t 操作类型] [-m 操作类型下的方法]
 
 Options:
 `)
@@ -33,6 +35,12 @@ func main() {
 	flag.Parse()
 
 	if help {
+		flag.Usage()
+	}
+	switch optainType {
+	case "ops":
+		fmt.Println("获取到ops命令")
+	default:
 		flag.Usage()
 	}
 }
