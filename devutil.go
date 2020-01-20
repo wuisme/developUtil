@@ -1,7 +1,6 @@
 package main
 
 import (
-	"developUtil/ops"
 	"flag"
 	"fmt"
 	"os"
@@ -17,7 +16,7 @@ var (
 
 func init() {
 	flag.BoolVar(&help, "h", false, "this help")
-	flag.StringVar(&optainType, "t", "", ops.OpsUsage())
+	flag.StringVar(&optainType, "t", "", opsUsage())
 	flag.StringVar(&method, "m", "", "获取详细内容请")
 	// 改变默认的 Usage
 	flag.Usage = usage
@@ -43,4 +42,9 @@ func main() {
 	default:
 		flag.Usage()
 	}
+}
+func opsUsage() string {
+	returnStr := `操作类型，暂时支持为:
+ops 运维类指令`
+	return returnStr
 }
